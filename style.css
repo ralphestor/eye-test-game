@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #E2D4B7;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    text-align: center;
+    padding: 20px 0;
+    height: 300px;
+    flex-direction: column;
+}
+
+.gameTitle {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.colorText {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+#gameValues {
+    padding: 20px 0;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+}
+.gameValue {
+    margin: 20px;
+}
+
+#gameOver {
+    color: rgb(183, 16, 16);
+    font-size: 30px;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+nav {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 200px;
+}
+
+#reset {
+    border-style: none;
+    border-radius: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#reset:hover {
+    border: 2px solid black;
+}
+
+#squares {
+    height: calc(100vh - 400px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    background-color: #CADBC8;
+    border: 5px solid black;
+    margin: 30px 20px;
+    transition: transform 0.25s ease-in-out;
+    text-align: center;
+    color:rgb(183, 16, 16);
+    font-weight: 900;
+    font-size: 200px;
+    text-shadow: 0px 0px 15px #000000;
+}
+
+.square:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+
+@media only screen and (max-width: 900px) {
+    nav {
+        flex-direction: column;
+    }
+  }
