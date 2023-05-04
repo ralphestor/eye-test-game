@@ -1,6 +1,7 @@
 const squares = document.querySelectorAll(".square");
 const result = document.querySelector("#result");
 const score = document.querySelector("#scoreValue");
+const highScore = document.querySelector("#highScoreValue");
 const lives = document.querySelector("#livesValue");
 const timer = document.querySelector("#timerValue");
 const resetBtn = document.querySelector("#reset");
@@ -9,6 +10,7 @@ let color =  "";
 let diffColor = "";
 let colorDifferenceValue = 20;
 var initScore = 0;
+var highScoreValue = 0;
 var scoreValue = 0;
 var livesValue = 5;
 var timerValue = 60;
@@ -16,10 +18,14 @@ var timerInterval;
 
 reset();
 setTimer();
-addScoringLogic()
+addScoringLogic();
 timerInterval = setInterval(checkTimer, 1000)
+setHighScore();
 
 function reset() {
+    squares.forEach(s => {
+        s.removeAttribute("isWrong");
+    })
     generateColor();
     setSquareColors();
     setScore();
@@ -29,6 +35,12 @@ function reset() {
 function setScore() {
     score.textContent = scoreValue;
 }
+
+function setHighScore() {
+    highScore.textContent = highScoreValue;
+}
+
+
 
 function setLives() {
     lives.textContent = livesValue;
@@ -72,7 +84,7 @@ function generateColor() {
 }
 
 function setSquareColors() {
-    let randSquare = Math.floor(Math.random() * 6)
+    let randSquare = Math.floor(Math.random() * squares.length)
     squares.forEach(e => {
         e.style.backgroundColor = color;
     })
@@ -87,6 +99,10 @@ function resetX() {
 }
 
 function checkTimer() {
+    if (livesValue === 5 && timerValue === 60 && scoreValue === 0){
+        return;
+    }
+
     if (livesValue !== 0 && timerValue !== 0){
         timerValue -= 1;
     }
@@ -102,6 +118,11 @@ function gameOver() {
         s.style.display = "none";
     })
     gameOverTxt.style.opacity = 1;
+
+    if(scoreValue > highScoreValue){
+        highScoreValue = scoreValue;
+    }
+    setHighScore();
 }
 
 function addScoringLogic(){
@@ -116,8 +137,8 @@ function addScoringLogic(){
                     console.log(colorDifferenceValue);
                 }
             } else {
+                s.setAttribute("isWrong", true)
                 s.textContent = "X";
-                s.style.cursor = "not-allowed";
                 if(livesValue > 0){
                     livesValue -= 1;
                 }
@@ -129,7 +150,6 @@ function addScoringLogic(){
         });
     })
 }
-
 
 resetBtn.addEventListener("click", function(){
     squares.forEach(s => {

@@ -95,6 +95,11 @@ nav {
     transform: scale(1.2);
 }
 
+[isWrong=true] {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 
 @media only screen and (max-width: 900px) {
     nav {
