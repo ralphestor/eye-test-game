@@ -10,7 +10,7 @@ let color =  "";
 let diffColor = "";
 let colorDifferenceValue = 20;
 var initScore = 0;
-var highScoreValue = 0;
+var highScoreValue = localStorage.getItem('highScoreSaved') || 0;;
 var scoreValue = 0;
 var livesValue = 5;
 var timerValue = 60;
@@ -121,6 +121,7 @@ function gameOver() {
 
     if(scoreValue > highScoreValue){
         highScoreValue = scoreValue;
+        localStorage.setItem('highScoreSaved', highScoreValue);
     }
     setHighScore();
 }
